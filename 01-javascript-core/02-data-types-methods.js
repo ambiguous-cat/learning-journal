@@ -9,13 +9,14 @@ const rawFileName = "  /images/PROFILE.JPEG  ";
 let cleanedFileName;
 cleanedFileName = rawFileName.trim();
 cleanedFileName = cleanedFileName.toLowerCase();
-cleanedFileName = cleanedFileName.slice(7);
-cleanedFileName = cleanedFileName.replace("jpeg", "jpg");
+const index = cleanedFileName.lastIndexOf("/");
+cleanedFileName = cleanedFileName.slice(index + 1);
+cleanedFileName = cleanedFileName.replace("jpeg", "png");
 console.log("任务1:", cleanedFileName);
 
 // ========= 任务 2: 数组操作 =========
 // 目标: 管理一个待办事项列表
-const todos = ["学习 JavaScript", "写代码", "睡觉"];
+let todos = ["学习 JavaScript", "写代码", "睡觉"];
 // TODO: 1. 在列表末尾添加一个新待办 "看书" (使用 push)
 // TODO: 2. 在列表开头添加一个新待办 "吃饭" (使用 unshift)
 // TODO: 3. 假设 "写代码" 这个任务已经完成，使用 splice 将它从数组中删除
@@ -23,9 +24,13 @@ const todos = ["学习 JavaScript", "写代码", "睡觉"];
 // 注意观察每一步操作后 todos 数组的变化
 todos.push("看书");
 todos.unshift("吃饭");
-todos.splice(2, 1);
-const newtodos = todos.slice(0, 2);
-console.log("任务2 - 最终的 todos:", newtodos);
+const toMove = "写代码";
+const toMoveIndex = todos.indexOf(toMove);
+if (toMoveIndex !== -1) {
+  todos.splice(toMoveIndex, 1);
+}
+todos = todos.splice(0, 2);
+console.log("任务2 - 最终的 todos:", todos);
 // ========= 任务 3: 对象操作 =========
 // 目标: 动态地更新和展示用户信息
 const userProfile = {
