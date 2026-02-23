@@ -50,3 +50,52 @@ for (const item of key) {
 }
 console.log("任务3 - 更新后的用户信息:", userProfile);
 // 在这里写你的循环代码来打印 key
+
+// ========= 任务 4: map, filter, reduce 实践 =========
+
+const products = [
+  { id: 1, name: "笔记本电脑", price: 8999, inStock: true },
+  { id: 2, name: "无线鼠标", price: 299, inStock: false },
+  { id: 3, name: "机械键盘", price: 899, inStock: true },
+  { id: 4, name: "4K显示器", price: 2599, inStock: true },
+  { id: 5, name: "USB-C扩展坞", price: 499, inStock: false },
+];
+
+// TODO: 使用 .map()
+// 目标: 创建一个只包含所有产品名称的新数组。
+// 期望输出: ["笔记本电脑", "无线鼠标", "机械键盘", "4K显示器", "USB-C扩展坞"]
+const productNames = products.map((product) => {
+  return product.name;
+}); // TODO: 在这里写你的代码
+console.log("产品名称列表:", productNames);
+
+// TODO: 使用 .filter()
+// 目标: 创建一个只包含所有有货 (inStock: true) 的产品的新数组。
+const inStockProducts = products.filter((product) => {
+  return product.inStock;
+}); // TODO: 在这里写你的代码
+console.log("有货的产品:", inStockProducts);
+
+// TODO: 使用 .reduce()
+// 目标: 计算所有产品的总价。
+const totalValue = products.reduce((sum, product) => {
+  return sum + product.price;
+}, 0); // TODO: 在这里写你的代码
+console.log("所有产品总价值:", totalValue);
+
+// TODO: 链式调用 (Chainning) - 王者挑战！
+// 目标: 计算所有 **有货** 的产品的总价。
+// 提示: 你可以先用 .filter() 筛选出有货的产品，然后在其结果上立刻调用 .reduce()。
+const stockInStock = products.filter((product) => {
+  return product.inStock;
+}); // TODO: 在这里写你的代码
+let totalValueInStock = stockInStock.reduce((sum, product) => {
+  return sum + product.price;
+}, 0);
+console.log("有货产品总价值:", totalValueInStock);
+totalValueInStock = stockInStock.reduce((sum, product) => {
+  if (product.inStock) {
+    return sum + product.price;
+  }
+}, 0);
+console.log("有货产品总价值:", totalValueInStock);
